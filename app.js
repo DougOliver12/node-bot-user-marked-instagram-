@@ -21,7 +21,7 @@ const browser = await puppeteer.launch()
 const page = await browser.newPage()
 await page.goto('https://www.instagram.com/p/CDMYAw0jFsH/')
 
-await loadMore(page, '.dCJp8');
+await loadMore(page, '.dCJp8')
 const arrobas = await getComments(page, '.C4VMK span a')
 const counted = count(arrobas)
 const sorted = sort(counted)
