@@ -10,17 +10,14 @@ async function start(){
             await loadMore(page, selector)
         }
     }
-
 // pegar os ccomentarios / arrobas
 async function getComments(page, selector){
     const comments = await page.$$eval(selector, links => links.map(link => link.innerText))
     return comments
 }
-
 const browser = await puppeteer.launch()
 const page = await browser.newPage()
 await page.goto('https://www.instagram.com/p/CDMYAw0jFsH/')
-
 await loadMore(page, '.dCJp8')
 const arrobas = await getComments(page, '.C4VMK span a')
 const counted = count(arrobas)
@@ -28,14 +25,12 @@ const sorted = sort(counted)
 sorted.forEach(arroba =>{console.log(arroba)})
 await browser.close()
 }
-
 //contar arrobas repetidas
 function count(arrobas){
     const count = {}
     arrobas.forEach(arroba => { count[arroba] = (count[arroba] || 0) + 1})
     return count
 }
-
 // ordenar 
 function sort(counted){
     const entries = Object.entries(counted)
